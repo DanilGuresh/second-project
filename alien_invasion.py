@@ -1,6 +1,6 @@
 import pygame
 from settings import Settings
-from ship import Ship
+from ship import Ship, Alien
 import game_functions as gf
 
 
@@ -12,12 +12,13 @@ def run_game():
     pygame.display.set_caption("Alien Invasion")
     # Creation of a ship
     ship = Ship(screen)
+    alien = Alien(screen)
     # Running the main game loop
     while True:
         # Tracking Keyboard and Mouse Events
         gf.cheek_events()
         # The screen is redrawn on each pass through the loop
-        gf.update_screen(ai_settings, screen, ship)
+        gf.update_screen(ai_settings, screen, ship, alien)
         # Displaying the last drawn screen
         pygame.display.flip()
 

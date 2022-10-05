@@ -9,10 +9,11 @@ def cheek_events():
             sys.exit()
 
 
-def update_screen(ai_setting, screen, ship):
+def update_screen(ai_setting, screen, ship, alien):
     """Refreshes the screen image and displays the new screen"""
     # The screen is redrawn on each iteration of the loop
     screen.fill(ai_setting.bg_color)
     ship.blitme()
+    alien.blitme()
     # Displaying the last drawn screen
     pygame.display.flip()
