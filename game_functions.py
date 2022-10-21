@@ -10,10 +10,17 @@ def cheek_keydown_events(event, ai_settings, screen, ship, bullets):
     elif event.key == pygame.K_LEFT:
         ship.moving_left = True
     elif event.key == pygame.K_SPACE:
-        # Creating a new bullet and including it in a group bullets
-        if len(bullets) < ai_settings.bullets_allowed:
-            new_bullet = Bullet(ai_settings, screen, ship)
-            bullets.add(new_bullet)
+        fire_bullet(ai_settings, screen, ship, bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
+
+
+def fire_bullet(ai_settings, screen, ship, bullets):
+    """Fires a bullet if the maximum has not yet been reached"""
+    # Creating a new bullet and including it in a group bullets
+    if len(bullets) < ai_settings.bullets_allowed:
+        new_bullet = Bullet(ai_settings, screen, ship)
+        bullets.add(new_bullet)
 
 
 def cheek_keyup_events(event, ship):
@@ -46,3 +53,13 @@ def update_screen(ai_setting, screen, ship, alien, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
+
+
+def update_bullets(bullets):
+    """Updates bullet positions and destroys old ones"""
+    # Bullet positions update
+    bullets.update()
+    # Removing bullets that have gone off the edge of the screen
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)

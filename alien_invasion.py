@@ -24,14 +24,11 @@ def run_game():
         ship.update()
         bullets.update()
         # Removing bullets that have gone off the edge of the screen
-        for bullet in bullets.copy():
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)
+        gf.update_bullets(bullets)
         # The screen is redrawn on each pass through the loop
         gf.update_screen(ai_settings, screen, ship, alien, bullets)
         # Displaying the last drawn screen
         pygame.display.flip()
-
 
 
 run_game()
