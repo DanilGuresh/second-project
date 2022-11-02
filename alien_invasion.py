@@ -17,7 +17,7 @@ def run_game():
     bullets = Group()
     aliens = Group()
     # Creation of an alien fleet
-    gf.create_fleet(ai_settings, screen, aliens)
+    gf.create_fleet(ai_settings, screen, ship, aliens)
     # Running the main game loop
     while True:
         # Tracking Keyboard and Mouse Events
