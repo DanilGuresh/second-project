@@ -25,7 +25,7 @@ def run_game():
         ship.update()
         bullets.update()
         # Removing bullets that have gone off the edge of the screen
-        gf.update_bullets(bullets)
+        gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
         gf.update_aliens(ai_settings, aliens)
         # The screen is redrawn on each pass through the loop
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
