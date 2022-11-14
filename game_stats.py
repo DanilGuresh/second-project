@@ -5,7 +5,7 @@ class GameStats:
         self.ai_settings = ai_settings
         self.reset_stats()
         # The game Aliens starts in an active state
-        self.game_active = True
+        self.game_active = False
 
     def reset_stats(self):
         """Initializes statistics that change during the game"""
