@@ -50,6 +50,8 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
     """Starts a new game when the Play button is pressed"""
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
+        # Reset game settings
+        ai_settings.initialize_dynamic_settings()
         # The mouse pointer is hidden
         pygame.mouse.set_visible(False)
         # Reset game system
@@ -63,7 +65,7 @@ def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bul
         ship.center_ship()
 
 
-def update_screen(ai_setting, screen, stats, ship, aliens, bullets, play_button):
+def update_screen(ai_setting, screen, stats, sb, ship, aliens, bullets, play_button):
     """Refreshes the screen image and displays the new screen"""
     # The screen is redrawn on each iteration of the loop
     screen.fill(ai_setting.bg_color)
@@ -74,6 +76,8 @@ def update_screen(ai_setting, screen, stats, ship, aliens, bullets, play_button)
         bullet.draw_bullet()
     ship.blitme()
     aliens.draw(screen)
+    # Account withdrawal
+    sb.show_score()
     # The Play button is displayed when the game is inactive
     if not stats.game_active:
         play_button.draw_button()
@@ -99,6 +103,7 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
     if len(aliens) == 0:
         # Destruction of existing bullets and the creation of a new fleet
         bullets.empty()
+        ai_settings.increase_speed()
         create_fleet(ai_settings, screen, ship, aliens)
 
 
