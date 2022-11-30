@@ -1,7 +1,6 @@
 import pygame
 from settings import Settings
 from ship import Ship
-from alien import Alien
 import game_functions as gf
 from pygame.sprite import Group
 from game_stats import GameStats
@@ -34,7 +33,7 @@ def run_game():
             ship.update()
             bullets.update()
             # Removing bullets that have gone off the edge of the screen
-            gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
+            gf.update_bullets(ai_settings, screen, stats, sb, ship, aliens, bullets)
             gf.update_aliens(ai_settings, screen, stats, ship, aliens, bullets)
             # The screen is redrawn on each pass through the loop
             gf.update_screen(ai_settings, screen, stats, sb, ship, aliens, bullets, play_button)

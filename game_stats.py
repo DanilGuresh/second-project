@@ -6,6 +6,8 @@ class GameStats:
         self.reset_stats()
         # The game Aliens starts in an active state
         self.game_active = False
+        # The record must not be reset
+        self.high_score = 0
 
     def reset_stats(self):
         """Initializes statistics that change during the game"""
